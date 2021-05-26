@@ -5,12 +5,12 @@
 \title{Estimation and Sensitivity Analysis for Multiple Causal Mechanisms}
 \usage{
 multimedDS(
-  outcome = outcome.name,
-  med.main = med.main.name,
+  outcome,
+  med.main,
   med.alt = NULL,
-  treat = treat.name,
+  treat,
   covariates.transmit = NULL,
-  data = data.name,
+  data,
   sims = 1000
 )
 }

@@ -28,8 +28,8 @@
 #' @author Demetris Avraam, for DataSHIELD Development Team
 #' @export
 #'
-multimedDS <- function(outcome=outcome.name, med.main=med.main.name, med.alt = NULL, treat=treat.name, 
-                       covariates.transmit = NULL, data=data.name, sims=1000){
+multimedDS <- function(outcome, med.main, med.alt = NULL, treat, 
+                       covariates.transmit = NULL, data, sims=1000){
   
   data <- eval(parse(text=data), envir = parent.frame())
   

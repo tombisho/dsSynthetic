@@ -7,8 +7,8 @@
 mediateDS(
   model.m,
   model.y,
-  treat = treat.name,
-  mediator = med.name,
+  treat,
+  mediator,
   boot = FALSE,
   robustSE = FALSE,
   sims = 1000,

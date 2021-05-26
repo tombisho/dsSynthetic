@@ -25,7 +25,7 @@
 #' @author Demetris Avraam, for DataSHIELD Development Team
 #' @export
 #'
-mediateDS <- function(model.m, model.y, treat=treat.name, mediator=med.name, boot=FALSE, robustSE=FALSE, sims=1000, seed=NULL){
+mediateDS <- function(model.m, model.y, treat, mediator, boot=FALSE, robustSE=FALSE, sims=1000, seed=NULL){
   
   model.m <- eval(parse(text=model.m), envir = parent.frame())
   model.y <- eval(parse(text=model.y), envir = parent.frame())
