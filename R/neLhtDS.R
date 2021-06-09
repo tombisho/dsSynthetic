@@ -21,7 +21,7 @@
 #' @author Demetris Avraam, for DataSHIELD Development Team
 #' @export
 #'
-neModelDS <- function(formula, family, expData, se, nBoot, newobj){
+neModelDS <- function(formula, family, expData, se, nBoot){
   
   library(medflex)
   
@@ -32,10 +32,14 @@ neModelDS <- function(formula, family, expData, se, nBoot, newobj){
 
   neModel.out <- medflex::neModel(formula=formula, family=family, expData=expData, se=se, 
                                   nBoot=nBoot, parallel="no", ncpus=1, progress=FALSE)
-  
   out <- summary(neModel.out)
-  base::assign(newobj, neModel.out, envir = parent.frame())
-  
   return(out)
   
 }
+
+
+
+
+
+
+
