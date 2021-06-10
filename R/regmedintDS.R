@@ -38,7 +38,7 @@
 #' @export
 #'
 regmedintDS <- function(data, yvar, avar, mvar, cvar, eventvar,
-                        interaction = TRUE, casecontrol = FALSE, na.omit = FALSE){
+                        interaction = TRUE, casecontrol = FALSE, na_omit = FALSE){
   
   data <- eval(parse(text=data), envir = parent.frame())
   
@@ -46,7 +46,7 @@ regmedintDS <- function(data, yvar, avar, mvar, cvar, eventvar,
 
   regmedint.out <- regmedint::regmedint(data=data, yvar=yvar, avar=avar, mvar=mvar, cvar=cvar, eventvar=eventvar,
                                         a0=0, a1=1, m_cde = 1, c_cond = 0.5, mreg = "logistic", yreg = "survAFT_weibull",
-                                        interaction = interaction, casecontrol = casecontrol)
+                                        interaction = interaction, casecontrol = casecontrol, na_omit=na_omit)
   
   out <- summary(regmedint.out)
   return(out)

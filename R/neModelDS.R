@@ -17,13 +17,13 @@
 #' @param se character string indicating the type of standard errors to be calculated.
 #' The default type is based on the bootstrap.
 #' @param nBoot number of bootstrap replicates.
+#' @param newobj a character string that provides the name for the output object
+#' that is stored on the data servers. Default \code{neModel.out}. 
 #' @return a summary table of the object of class 'neModel'.
 #' @author Demetris Avraam, for DataSHIELD Development Team
 #' @export
 #'
 neModelDS <- function(formula, family, expData, se, nBoot, newobj){
-  
-  library(medflex)
   
   # get the value of the 'expData' provided as character on the client side
   expData <- eval(parse(text=expData), envir = parent.frame())

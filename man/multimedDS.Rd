@@ -11,7 +11,8 @@ multimedDS(
   treat,
   covariates.transmit = NULL,
   data,
-  sims = 1000
+  sims = 1000,
+  conf.level
 )
 }
 \arguments{
@@ -26,14 +27,16 @@ main mediator and outcome. Not needed for the parallel design.}
 
 \item{treat}{a string character, the name of the treatment variable in 'data'.}
 
+\item{covariates.transmit}{vector of character strings representing the names of the
+pre-treatment covariates. Cannot be used for the parallel design.}
+
 \item{data}{a string character, the name of data frame containing all the 
 above variables.}
 
 \item{sims}{a number of bootstrap samples used for the calculation of 
 confidence intervals.}
 
-\item{covariates}{vector of character strings representing the names of the
-pre-treatment covariates. Cannot be used for the parallel design.}
+\item{conf.level}{level to be used for confidence intervals.}
 }
 \value{
 a summary table of the object of class 'multimed'
