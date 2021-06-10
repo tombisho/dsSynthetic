@@ -14,6 +14,7 @@
 #' used in the models.
 #' @param boot a logical value. if 'FALSE' a quasi-Bayesian approximation is used for
 #' confidence intervals; if 'TRUE' nonparametric bootstrap will be used. Default is 'FALSE'.
+#' @param conf.level the level of the returned two-sided confidence intervals. 
 #' @param robustSE a logical value. If 'TRUE', heteroskedasticity-consistent standard
 #' errors will be used in quasi-Bayesian simulations. Ignored if 'boot' is 'TRUE' or
 #' neither 'model.m' nor 'model.y' has a method for vcovHC in the sandwich package. 
@@ -25,13 +26,10 @@
 #' @author Demetris Avraam, for DataSHIELD Development Team
 #' @export
 #'
-mediateDS <- function(model.m, model.y, treat, mediator, boot=FALSE, robustSE=FALSE, sims=1000, seed=NULL){
+mediateDS <- function(model.m, model.y, treat, mediator, boot=FALSE, conf.level=conf.level, robustSE=FALSE, sims=1000, seed=NULL){
   
   model.m <- eval(parse(text=model.m), envir = parent.frame())
   model.y <- eval(parse(text=model.y), envir = parent.frame())
-  
-  #mget(ls(), envir = parent.frame())
-  
 
   if(!is.null(seed)){
     set.seed(seed)
@@ -43,8 +41,9 @@ mediateDS <- function(model.m, model.y, treat, mediator, boot=FALSE, robustSE=FA
   #   treat.value = 1, long = TRUE, dropobs = FALSE, robustSE = robustSE,
   #   cluster = NULL, group.out = NULL, use_speed = FALSE)
   
-  med.out <- mediation::mediate(model.m, model.y, sims = sims, boot = boot, 
-                                treat = treat, mediator = mediator, robustSE = robustSE)
+  med.out <- mediation::mediate(model.m, model.y, sims=sims, boot=boot,
+                                treat=treat, mediator=mediator, conf.level=conf.level,
+                                robustSE=robustSE)
   
   out <- summary(med.out)
   return(out)

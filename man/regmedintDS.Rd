@@ -13,7 +13,7 @@ regmedintDS(
   eventvar,
   interaction = TRUE,
   casecontrol = FALSE,
-  na.omit = FALSE
+  na_omit = FALSE
 )
 }
 \arguments{
