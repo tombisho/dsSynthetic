@@ -5,7 +5,7 @@
 #' @title Fit a natural effect model
 #' @description This function is similar to R function \code{neModel} from the 
 #' \code{medflex} package.
-#' @details The function 'neModel' is used to fit a natural effect model on the
+#' @details The function 'neModelDS' is used to fit a natural effect model on the
 #' expanded dataset.
 #' @param formula a formula object providing a symbolic description of the 
 #' natural effect model.
@@ -34,6 +34,8 @@ neModelDS <- function(formula, family, expData, se, nBoot, newobj){
                                   nBoot=nBoot, parallel="no", ncpus=1, progress=FALSE)
   
   out <- summary(neModel.out)
+  
+  # save the outcome on the server-side
   base::assign(newobj, neModel.out, envir = parent.frame())
   
   return(out)
