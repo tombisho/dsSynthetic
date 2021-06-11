@@ -1,45 +1,22 @@
 #'
-#' @title Fit a natural effect model
-#' @description This function is similar to R function \code{neModel} from the 
-#'
-#' @title Fit a natural effect model
-#' @description This function is similar to R function \code{neModel} from the 
+#' @title Linear hypotheses for natural effect models
+#' @description This function is similar to R function \code{neLht} from the 
 #' \code{medflex} package.
-#' @details The function 'neModel' is used to fit a natural effect model on the
-#' expanded dataset.
-#' @param formula a formula object providing a symbolic description of the 
-#' natural effect model.
-#' @param family aa description of the error distribution and link function to be
-#' used in the model. For glm this can be a character string naming a family 
-#' function, a family function or the result of a call to a family function. 
-#' For glm.fit only the third option is supported.
-#' @param expData the expanded dataset (of class "expData").
-#' @param se character string indicating the type of standard errors to be calculated.
-#' The default type is based on the bootstrap.
-#' @param nBoot number of bootstrap replicates.
-#' @return a summary table of the object of class 'neModel'.
+#' @details The function \code{neLhtDS} allows to calculate linear combinations of 
+#' natural effect model parameter estimates.
+#' @param model.name a fitted natural effect model object. This is the object saved
+#' on the server-side by the \code{ds.neModel} function.
+#' @return a summary table of the object of class c("neLht", "glht") (see glht).
 #' @author Demetris Avraam, for DataSHIELD Development Team
 #' @export
 #'
-neModelDS <- function(formula, family, expData, se, nBoot){
+neLhtDS <- function(model.name){
   
-  library(medflex)
+  # evaluate the object 'model.name' provided as character on the client side
+  model <- eval(parse(text=model.name), envir = parent.frame())
   
-  # get the value of the 'expData' provided as character on the client side
-  expData <- eval(parse(text=expData), envir = parent.frame())
-  
-  formula <- stats::as.formula(formula)
-
-  neModel.out <- medflex::neModel(formula=formula, family=family, expData=expData, se=se, 
-                                  nBoot=nBoot, parallel="no", ncpus=1, progress=FALSE)
-  out <- summary(neModel.out)
+  neLht.out <- medflex::neLht(model=model)
+  out <- summary(neLht.out)
   return(out)
   
 }
-
-
-
-
-
-
-
