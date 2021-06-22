@@ -22,15 +22,17 @@
 #' @param sims a number of Monte Carlo draws for nonparametric bootstrap or 
 #' quasi-Bayesian approximation.
 #' @param seed a number of a seed random number generator. Default value is NULL.
+#' @param newobj a character string that provides the name for the output object
+#' that is stored on the data servers. Default \code{med.out}.
 #' @return a summary table of the object of class 'mediate'.
 #' @author Demetris Avraam, for DataSHIELD Development Team
 #' @export
 #'
-mediateDS <- function(model.m, model.y, treat, mediator, boot=FALSE, conf.level=conf.level, robustSE=FALSE, sims=1000, seed=NULL){
+mediateDS <- function(model.m, model.y, treat, mediator, boot, conf.level, robustSE, sims, seed, newobj){
   
   model.m <- eval(parse(text=model.m), envir = parent.frame())
   model.y <- eval(parse(text=model.y), envir = parent.frame())
-
+  
   if(!is.null(seed)){
     set.seed(seed)
   }
@@ -46,6 +48,12 @@ mediateDS <- function(model.m, model.y, treat, mediator, boot=FALSE, conf.level=
                                 robustSE=robustSE)
   
   out <- summary(med.out)
+  
+  # save the outcome on the server-side
+  base::assign(newobj, med.out, envir = parent.frame())
+  
   return(out)
   
 }
+# AGGREGATE FUNCTION
+# mediateDS

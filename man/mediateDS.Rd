@@ -9,11 +9,12 @@ mediateDS(
   model.y,
   treat,
   mediator,
-  boot = FALSE,
-  conf.level = conf.level,
-  robustSE = FALSE,
-  sims = 1000,
-  seed = NULL
+  boot,
+  conf.level,
+  robustSE,
+  sims,
+  seed,
+  newobj
 )
 }
 \arguments{
@@ -42,6 +43,9 @@ Default is 'FALSE'.}
 quasi-Bayesian approximation.}
 
 \item{seed}{a number of a seed random number generator. Default value is NULL.}
+
+\item{newobj}{a character string that provides the name for the output object
+that is stored on the data servers. Default \code{med.out}.}
 }
 \value{
 a summary table of the object of class 'mediate'.
