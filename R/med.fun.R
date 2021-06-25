@@ -155,7 +155,7 @@ med.fun <- function (y.data, index, m.data)
     call.new <- new.fit.M$call
     call.new$tau <- stats::runif(n)
     newfits <- eval.parent(call.new)
-    tt <- stats::delete.response(terms(new.fit.M))
+    tt <- stats::delete.response(stats::terms(new.fit.M))
     m.t <- stats::model.frame(tt, pred.data.t, xlev = new.fit.M$xlevels)
     m.c <- stats::model.frame(tt, pred.data.c, xlev = new.fit.M$xlevels)
     X.t <- stats::model.matrix(tt, m.t, contrasts = new.fit.M$contrasts)
@@ -191,7 +191,7 @@ med.fun <- function (y.data, index, m.data)
     scale <- new.fit.M$scale
     lpM1 <- stats::predict(new.fit.M, newdata = pred.data.t, type = "linear")
     lpM0 <- stats::predict(new.fit.M, newdata = pred.data.c, type = "linear")
-    error <- switch(dname, extreme = log(rweibull(n, shape = 1, 
+    error <- switch(dname, extreme = log(stats::rweibull(n, shape = 1, 
                                                   scale = 1)), gaussian = stats::rnorm(n), logistic = stats::rlogis(n), 
                     t = stats::rt(n, df = dd$parms))
     PredictM1 <- as.numeric(itrans(lpM1 + scale * error))
