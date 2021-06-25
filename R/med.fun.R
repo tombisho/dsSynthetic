@@ -105,24 +105,24 @@ med.fun <- function (y.data, index, m.data)
     }
   }
   if (isGlm.m) {
-    muM1 <- predict(new.fit.M, type = "response", newdata = pred.data.t)
-    muM0 <- predict(new.fit.M, type = "response", newdata = pred.data.c)
+    muM1 <- stats::predict(new.fit.M, type = "response", newdata = pred.data.t)
+    muM0 <- stats::predict(new.fit.M, type = "response", newdata = pred.data.c)
     if (FamilyM == "poisson") {
-      PredictM1 <- rpois(n, lambda = muM1)
-      PredictM0 <- rpois(n, lambda = muM0)
+      PredictM1 <- stats::rpois(n, lambda = muM1)
+      PredictM0 <- stats::rpois(n, lambda = muM0)
     }
     else if (FamilyM == "Gamma") {
-      shape <- gamma.shape(new.fit.M)$alpha
-      PredictM1 <- rgamma(n, shape = shape, scale = muM1/shape)
-      PredictM0 <- rgamma(n, shape = shape, scale = muM0/shape)
+      shape <- MASS::gamma.shape(new.fit.M)$alpha
+      PredictM1 <- stats::rgamma(n, shape = shape, scale = muM1/shape)
+      PredictM0 <- stats::rgamma(n, shape = shape, scale = muM0/shape)
     }
     else if (FamilyM == "binomial") {
-      PredictM1 <- rbinom(n, size = 1, prob = muM1)
-      PredictM0 <- rbinom(n, size = 1, prob = muM0)
+      PredictM1 <- stats::rbinom(n, size = 1, prob = muM1)
+      PredictM0 <- stats::rbinom(n, size = 1, prob = muM0)
     }
     else if (FamilyM == "gaussian") {
       sigma <- sqrt(summary(new.fit.M)$dispersion)
-      error <- rnorm(n, mean = 0, sd = sigma)
+      error <- stats::rnorm(n, mean = 0, sd = sigma)
       PredictM1 <- muM1 + error
       PredictM0 <- muM0 + error
     }
@@ -136,16 +136,16 @@ med.fun <- function (y.data, index, m.data)
     }
   }
   else if (isOrdered.m) {
-    probs_m1 <- predict(new.fit.M, newdata = pred.data.t, 
+    probs_m1 <- stats::predict(new.fit.M, newdata = pred.data.t, 
                         type = "probs")
-    probs_m0 <- predict(new.fit.M, newdata = pred.data.c, 
+    probs_m0 <- stats::predict(new.fit.M, newdata = pred.data.c, 
                         type = "probs")
     draws_m1 <- matrix(NA, n, m)
     draws_m0 <- matrix(NA, n, m)
     for (ii in 1:n) {
-      draws_m1[ii, ] <- t(rmultinom(1, 1, prob = probs_m1[ii, 
+      draws_m1[ii, ] <- t(stats::rmultinom(1, 1, prob = probs_m1[ii, 
       ]))
-      draws_m0[ii, ] <- t(rmultinom(1, 1, prob = probs_m0[ii, 
+      draws_m0[ii, ] <- t(stats::rmultinom(1, 1, prob = probs_m0[ii, 
       ]))
     }
     PredictM1 <- apply(draws_m1, 1, which.max)
@@ -153,13 +153,13 @@ med.fun <- function (y.data, index, m.data)
   }
   else if (isRq.m) {
     call.new <- new.fit.M$call
-    call.new$tau <- runif(n)
+    call.new$tau <- stats::runif(n)
     newfits <- eval.parent(call.new)
-    tt <- delete.response(terms(new.fit.M))
-    m.t <- model.frame(tt, pred.data.t, xlev = new.fit.M$xlevels)
-    m.c <- model.frame(tt, pred.data.c, xlev = new.fit.M$xlevels)
-    X.t <- model.matrix(tt, m.t, contrasts = new.fit.M$contrasts)
-    X.c <- model.matrix(tt, m.c, contrasts = new.fit.M$contrasts)
+    tt <- stats::delete.response(terms(new.fit.M))
+    m.t <- stats::model.frame(tt, pred.data.t, xlev = new.fit.M$xlevels)
+    m.c <- stats::model.frame(tt, pred.data.c, xlev = new.fit.M$xlevels)
+    X.t <- stats::model.matrix(tt, m.t, contrasts = new.fit.M$contrasts)
+    X.c <- stats::model.matrix(tt, m.c, contrasts = new.fit.M$contrasts)
     rm(tt, m.t, m.c)
     PredictM1 <- rowSums(X.t * t(newfits$coefficients))
     PredictM0 <- rowSums(X.c * t(newfits$coefficients))
@@ -169,10 +169,10 @@ med.fun <- function (y.data, index, m.data)
     if (class(new.fit.M) == "speedlm") 
       sigma <- sqrt(summary(new.fit.M)$var.res)
     else sigma <- summary(new.fit.M)$sigma
-    error <- rnorm(n, mean = 0, sd = sigma)
-    PredictM1 <- predict(new.fit.M, type = "response", newdata = pred.data.t) + 
+    error <- stats::rnorm(n, mean = 0, sd = sigma)
+    PredictM1 <- stats::predict(new.fit.M, type = "response", newdata = pred.data.t) + 
       error
-    PredictM0 <- predict(new.fit.M, type = "response", newdata = pred.data.c) + 
+    PredictM0 <- stats::predict(new.fit.M, type = "response", newdata = pred.data.c) + 
       error
     rm(error)
   }
@@ -189,11 +189,11 @@ med.fun <- function (y.data, index, m.data)
       dname <- new.fit.M$dist
     }
     scale <- new.fit.M$scale
-    lpM1 <- predict(new.fit.M, newdata = pred.data.t, type = "linear")
-    lpM0 <- predict(new.fit.M, newdata = pred.data.c, type = "linear")
+    lpM1 <- stats::predict(new.fit.M, newdata = pred.data.t, type = "linear")
+    lpM0 <- stats::predict(new.fit.M, newdata = pred.data.c, type = "linear")
     error <- switch(dname, extreme = log(rweibull(n, shape = 1, 
-                                                  scale = 1)), gaussian = rnorm(n), logistic = rlogis(n), 
-                    t = rt(n, df = dd$parms))
+                                                  scale = 1)), gaussian = stats::rnorm(n), logistic = stats::rlogis(n), 
+                    t = stats::rt(n, df = dd$parms))
     PredictM1 <- as.numeric(itrans(lpM1 + scale * error))
     PredictM0 <- as.numeric(itrans(lpM0 + scale * error))
     rm(error)
@@ -255,22 +255,22 @@ med.fun <- function (y.data, index, m.data)
       pred.data.c[, mediator] <- PredictMc
     }
     if (isRq.y) {
-      pr.1 <- predict(new.fit.Y, type = "response", newdata = pred.data.t, 
+      pr.1 <- stats::predict(new.fit.Y, type = "response", newdata = pred.data.t, 
                       interval = "none")
-      pr.0 <- predict(new.fit.Y, type = "response", newdata = pred.data.c, 
+      pr.0 <- stats::predict(new.fit.Y, type = "response", newdata = pred.data.c, 
                       interval = "none")
     }
     else {
-      pr.1 <- predict(new.fit.Y, type = "response", newdata = pred.data.t)
-      pr.0 <- predict(new.fit.Y, type = "response", newdata = pred.data.c)
+      pr.1 <- stats::predict(new.fit.Y, type = "response", newdata = pred.data.t)
+      pr.0 <- stats::predict(new.fit.Y, type = "response", newdata = pred.data.c)
     }
     pr.mat <- as.matrix(cbind(pr.1, pr.0))
     effects.tmp[, e] <- pr.mat[, 1] - pr.mat[, 2]
     rm(pred.data.t, pred.data.c, pr.1, pr.0, pr.mat)
   }
-  d1 <- weighted.mean(effects.tmp[, 1], weights)
-  d0 <- weighted.mean(effects.tmp[, 2], weights)
-  z1 <- weighted.mean(effects.tmp[, 3], weights)
-  z0 <- weighted.mean(effects.tmp[, 4], weights)
+  d1 <- stats::weighted.mean(effects.tmp[, 1], weights)
+  d0 <- stats::weighted.mean(effects.tmp[, 2], weights)
+  z1 <- stats::weighted.mean(effects.tmp[, 3], weights)
+  z0 <- stats::weighted.mean(effects.tmp[, 4], weights)
   c(d1 = d1, d0 = d0, z1 = z1, z0 = z0)
 }
