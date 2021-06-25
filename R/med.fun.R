@@ -65,14 +65,20 @@ med.fun <- function (y.data, index, m.data)
   new.fit.Y <- NULL
   if (use_speed) {
     if (isGlm.m) 
-      new.fit.M <- fit_speedglm(Call.M)
+      new.fit.M <- speedglm::speedglm(formula = Call.M$formula,
+                                        data = Call.M$data,
+                                        family = eval(Call.M$family),
+                                        weights = Call.M$weights)
     else if (isLm.m) {
       formula <- Call.M$formula
       new.fit.M <- speedglm::speedlm(formula = formula, 
                                      data = Call.M$data, weights = Call.M$weights)
     }
     if (isGlm.y) 
-      new.fit.Y <- fit_speedglm(Call.Y)
+      new.fit.Y <- speedglm::speedglm(formula = Call.Y$formula,
+                                      data = Call.Y$data,
+                                      family = eval(Call.Y$family),
+                                      weights = Call.Y$weights)
     else if (isLm.y) {
       formula <- Call.Y$formula
       new.fit.Y <- speedglm::speedlm(formula = formula, 

@@ -12,7 +12,8 @@ multimedDS(
   covariates.transmit = NULL,
   data,
   sims = 1000,
-  conf.level
+  conf.level,
+  seed
 )
 }
 \arguments{
@@ -37,6 +38,8 @@ above variables.}
 confidence intervals.}
 
 \item{conf.level}{level to be used for confidence intervals.}
+
+\item{seed}{a number of a seed random number generator. Default value is NULL.}
 }
 \value{
 a summary table of the object of class 'multimed'

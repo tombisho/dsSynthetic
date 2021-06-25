@@ -25,20 +25,25 @@
 #' @param sims a number of bootstrap samples used for the calculation of 
 #' confidence intervals.
 #' @param conf.level level to be used for confidence intervals.
+#' @param seed a number of a seed random number generator. Default value is NULL.
 #' @return a summary table of the object of class 'multimed'
 #' @author Demetris Avraam, for DataSHIELD Development Team
 #' @export
 #'
-multimedDS <- function(outcome, med.main, med.alt = NULL, treat, 
-                       covariates.transmit = NULL, data, sims=1000, conf.level){
+multimedDS <- function(outcome, med.main, med.alt = NULL, treat, covariates.transmit = NULL, data, 
+                       sims = 1000, conf.level, seed){
   
   data <- eval(parse(text=data), envir = parent.frame())
   
   covariates <- unlist(strsplit(covariates.transmit, split=","))
+  
+  if(!is.null(seed)){
+    set.seed(seed)
+  }
 
-  m.med.out <- mediation::multimed(outcome=outcome, med.main=med.main, med.alt = med.alt, treat=treat, covariates = covariates,
-                                 experiment = NULL, data=data, design = c("single", "parallel"),
-                                 sims = sims, R2.by = 0.01, conf.level=conf.level, weight = NULL)
+  m.med.out <- mediation::multimed(outcome = outcome, med.main = med.main, med.alt = med.alt, treat=treat, 
+                                   covariates = covariates, experiment = NULL, data = data, design = c("single", "parallel"),
+                                   sims = sims, R2.by = 0.01, conf.level = conf.level, weight = NULL)
   
   out <- summary(m.med.out)
   return(out)
