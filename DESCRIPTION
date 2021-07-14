@@ -1,29 +1,15 @@
-Package: dsMediation
-Title: DataSHIELD server site mediation functions
-Description: DataSHIELD server site mediation functions.
+Package: dsSynthetic
+Title: DataSHIELD server side synthetic data generation functions
+Description: DataSHIELD server side synthetic data generation functions.
 Version: 0.0.1
-Author: DataSHIELD Developers <datashield@newcastle.ac.uk>
-Maintainer: DataSHIELD Developers <datashield@newcastle.ac.uk>
+Author: Tom Bishop <trpb2@cam.ac.uk>
+Maintainer: Tom Bishop <trpb2@cam.ac.uk>
 License: GPL-3
 Depends: 
     R (>= 3.5.0)
 Imports:
-    stats,
-    SuppDists,
-    speedglm,
-    survival,
-    MASS,
-    medflex,
-    regmedint,
-    mediation
+    synthpop
 AggregateMethods:
-    mediateDS,
-    mediationTestDS,
-    multimedDS,
-    neLhtDS,
-    neModelDS,
-    regmedintDS
+    synDS
 AssignMethods:
-    neImputeDS,
-    neWeightDS
 RoxygenNote: 7.1.1
