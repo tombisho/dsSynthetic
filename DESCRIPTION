@@ -8,8 +8,10 @@ License: GPL-3
 Depends: 
     R (>= 3.5.0)
 Imports:
-    synthpop
+    synthpop,
+    dsBase
 AggregateMethods:
-    synDS
+    synDS,
+    synDS2
 AssignMethods:
 RoxygenNote: 7.1.1
