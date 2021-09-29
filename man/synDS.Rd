@@ -4,7 +4,7 @@
 \alias{synDS}
 \title{Generating synthetic datasets}
 \usage{
-synDS(data, method = "cart", m = 1, seed)
+synDS(data, method, m, k, proper, seed)
 }
 \arguments{
 \item{data}{a dataframe containing the variables to be included in the synthetic dataset}
@@ -14,6 +14,10 @@ specifying the synthesising method to be used for each variable in the data.
 Order of variables is exactly the same as in data.}
 
 \item{m}{number of synthetic copies of the original (observed) data to be generated. The default is m = 1.}
+
+\item{k}{number of rows to generate}
+
+\item{proper}{a logical value with default set to FALSE. If TRUE proper synthesis is conducted.}
 
 \item{seed}{an integer to be used as an argument for the set.seed(). If no integer is provided, the defaul}
 }

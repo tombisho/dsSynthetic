@@ -9,7 +9,7 @@ synDS2(data, ...)
 \arguments{
 \item{data}{a dataframe containing the variables to be included in the synthetic dataset}
 
-\item{arguments}{the arguments passed to \code{syn}}
+\item{...}{the arguments passed to \code{syn}}
 }
 \value{
 synthetic datasets
@@ -20,6 +20,7 @@ This function is similar to R function \code{syn} from the
 }
 \details{
 The function 'syn' is used to generate synthetic versions of a dataset.
+The following disclosure protections are enforced
 }
 \author{
 Tom Bishop
