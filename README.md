@@ -3,7 +3,16 @@ dsSynthetic
 
 ## Introduction
 
-DataSHIELD server side dsSynthetic library to generate synthetic data.
+This is a DataSHIELD server side package (`dsSynthetic`) for generating synthetic data.
+
+Please also look at the client side package `dsSyntheticClient`
+
+https://github.com/tombisho/dsSyntheticClient
+
+or
+
+https://github.com/neelsoumya/dsSyntheticClient
+
 
 ## Installation
 
