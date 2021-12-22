@@ -32,6 +32,10 @@ https://github.com/neelsoumya/dsSyntheticClient
 
 * Install dsBase and dsSynthetic on Opal server in the Virtual Machine (type tombisho/dsSynthetic and main in the textboxes) 
 
+* Follow the bookdown
+
+https://tombisho.github.io/synthetic_bookdown/
+
 
 ## Usage
 
