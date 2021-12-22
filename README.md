@@ -48,5 +48,8 @@ https://tombisho.github.io/synthetic_bookdown/
 
 Soumya Banerjee and Tom R.P. Bishop
 
+## Citation
+
+Manuscript forthcoming
 
 [![License](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
