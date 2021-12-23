@@ -46,7 +46,8 @@ https://tombisho.github.io/synthetic_bookdown/
 
 ## Contact
 
-Soumya Banerjee and Tom R.P. Bishop
+Tom R.P. Bishop and Soumya Banerjee
+
 
 ## Citation
 
