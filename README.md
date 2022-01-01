@@ -39,7 +39,7 @@ https://tombisho.github.io/synthetic_bookdown/
 
 ## Usage
 
-See bookdown below
+See bookdown below for executable code and a tutorial
 
 https://tombisho.github.io/synthetic_bookdown/
 
