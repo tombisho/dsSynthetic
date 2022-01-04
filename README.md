@@ -34,7 +34,7 @@ https://github.com/neelsoumya/dsSyntheticClient
 
      See the link below on how to install a package in Opal
      
-        https://opaldoc.obiba.org/en/latest/web-user-guide/administration/datashield.html#add-package
+     https://opaldoc.obiba.org/en/latest/web-user-guide/administration/datashield.html#add-package
 
 * Follow the bookdown
 
