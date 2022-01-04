@@ -32,6 +32,10 @@ https://github.com/neelsoumya/dsSyntheticClient
 
 * Install dsBase and dsSynthetic on Opal server in the Virtual Machine (type tombisho/dsSynthetic and main in the textboxes) 
 
+     See the link below on how to install a package in Opal
+     
+        https://opaldoc.obiba.org/en/latest/web-user-guide/administration/datashield.html#add-package
+
 * Follow the bookdown
 
 https://tombisho.github.io/synthetic_bookdown/
