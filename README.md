@@ -3,9 +3,9 @@ dsSynthetic
 
 ## Introduction
 
-This is a DataSHIELD server side package (`dsSynthetic`) for generating synthetic data.
+`dsSynthetic` is a DataSHIELD server side package for generating synthetic data.
 
-Please also look at the client side package `dsSyntheticClient`
+Please also look at the corresponding client side package `dsSyntheticClient`
 
 https://github.com/tombisho/dsSyntheticClient
 
@@ -40,12 +40,20 @@ https://github.com/neelsoumya/dsSyntheticClient
 
 https://tombisho.github.io/synthetic_bookdown/
 
+which uses the Opal demo server
+
+https://opal-sandbox.mrc-epid.cam.ac.uk/
+
 
 ## Usage
 
 See bookdown below for executable code and a tutorial
 
 https://tombisho.github.io/synthetic_bookdown/
+
+which uses the Opal demo server which has all server side packages installed
+
+https://opal-sandbox.mrc-epid.cam.ac.uk/
 
 
 ## Contact
