@@ -68,6 +68,11 @@ Tom R.P. Bishop and Soumya Banerjee
 
 ## Citation
 
-Manuscript forthcoming
+If you like or use this work, please cite the following manuscript 
+
+dsSynthetic: Synthetic data generation for the DataSHIELD federated analysis system
+
+https://osf.io/tkxqm/
+
 
 [![License](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
