@@ -4,7 +4,7 @@
 \alias{synDS}
 \title{Generating synthetic datasets}
 \usage{
-synDS(data, method, m, k, proper, seed)
+synDS(data, method, m = 1, k = NA, proper = FALSE, seed = NA)
 }
 \arguments{
 \item{data}{a dataframe containing the variables to be included in the synthetic dataset}
@@ -19,7 +19,7 @@ Order of variables is exactly the same as in data.}
 
 \item{proper}{a logical value with default set to FALSE. If TRUE proper synthesis is conducted.}
 
-\item{seed}{an integer to be used as an argument for the set.seed(). If no integer is provided, the defaul}
+\item{seed}{an integer to be used as an argument for the set.seed(). If no integer is provided, one will be generated}
 }
 \value{
 synthetic datasets
