@@ -26,7 +26,7 @@ synDS <- function(data, method, m = 1, k=NA, proper = FALSE, seed=NA){
   thr <- dsBase::listDisclosureSettingsDS()
   nfilter.tab <- as.numeric(thr$nfilter.tab)
   #############################################################
-  
+
   # to work with DSLite
   data.x <- eval(parse(text=data), envir = parent.frame())
 
@@ -38,9 +38,9 @@ synDS <- function(data, method, m = 1, k=NA, proper = FALSE, seed=NA){
   nums = unlist(lapply(data.x, is.numeric))
   num_list[colnames(data.x[,nums])] = "density"
   
-  if(!is.null(seed)){
-     set.seed(seed)
-  }
+  #if(!is.null(seed)){
+  #   set.seed(seed)
+  #}
   
   #by default, return the same number of rows as the real data
   if(is.null(k)){
@@ -63,9 +63,10 @@ synDS <- function(data, method, m = 1, k=NA, proper = FALSE, seed=NA){
   }
   else{
     cell.count.warning = NA
+    # currently hard coded due to the problem with passing a named object to cart.minbucket
     syn.out <- synthpop::syn(data = data.x, method = method, m = m, k = k,
                              proper = proper, drop.not.used = TRUE, drop.pred.only = TRUE,
-                             print.flag = FALSE, seed = seed, cart.minbucket = nfilter.tab, smoothing = num_list)
+                             print.flag = FALSE, seed = seed, cart.minbucket = 5, smoothing = num_list)
   }
     result = list(cell.count.warning, syn.out)
     names(result)<-list("Warning","Data")

@@ -9,13 +9,11 @@ synDS(data, method, m = 1, k = NA, proper = FALSE, seed = NA)
 \arguments{
 \item{data}{a dataframe containing the variables to be included in the synthetic dataset}
 
-\item{method}{a single string or a vector of strings of length ncol(data)
-specifying the synthesising method to be used for each variable in the data.
-Order of variables is exactly the same as in data.}
+\item{method}{currently overwritten to CART for disclosure protection}
 
 \item{m}{number of synthetic copies of the original (observed) data to be generated. The default is m = 1.}
 
-\item{k}{number of rows to generate}
+\item{k}{number of rows to generate, defaults to the length of the data set}
 
 \item{proper}{a logical value with default set to FALSE. If TRUE proper synthesis is conducted.}
 
