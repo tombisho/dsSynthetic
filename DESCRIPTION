@@ -1,7 +1,7 @@
 Package: dsSynthetic
 Title: DataSHIELD server side synthetic data generation functions
 Description: DataSHIELD server side synthetic data generation functions.
-Version: 0.0.1
+Version: 0.0.2
 Author: Tom Bishop <trpb2@cam.ac.uk>
 Maintainer: Tom Bishop <trpb2@cam.ac.uk>
 License: GPL-3
